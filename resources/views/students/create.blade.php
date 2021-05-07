@@ -46,6 +46,30 @@
                             </div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="jk">Jenis Kelamin</label>
+                        {{-- <input type="text" class="form-control @error('jk') is-invalid @enderror" id="jk" placeholder="Masukkan jk" name="jk" value="{{ old('jk') }}"> --}}
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio1">Laki-laki</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="btnradio2">Perempuan</label>
+                          </div>
+                        @error('jk')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" placeholder="Masukkan alamat" name="alamat" value="{{ old('alamat') }}">
+                        @error('alamat')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                    <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </form>
 
