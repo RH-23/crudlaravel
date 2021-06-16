@@ -45,6 +45,6 @@ Route::get('/about', [PagesController::class, 'about']);
 // Cara 2
 Route::resource('students', StudentsController::class);
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

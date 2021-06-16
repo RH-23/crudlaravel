@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Keterangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class StudentsController extends Controller
 {
@@ -42,12 +43,13 @@ class StudentsController extends Controller
     // Untuk insert data dengan fungsi store
     public function store(Request $request)
     {
+        // Cara Validasi
         $request->validate([
             'nama' => 'required',
             'nim' => 'required|size:9',
             'email' => 'required',
             'jurusan' => 'required',
-            'jk' => 'required',
+            'jenis_kelamin' => 'required',
             'alamat' => 'required'
         ]);
 
@@ -68,18 +70,27 @@ class StudentsController extends Controller
         // ]);
 
         // cara 3
-        Student::create($request->all());
-        Keterangan::create($request->all());
+        // Student::create($request->all());
+        // // Keterangan::create($request->all());
+
+        // Keterangan::create([
+        //     'alamat' => $request->alamat
+        // ]);
+
+        Student::create([
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+            'email' => $request->email,
+            'jurusan' => $request->jurusan
+        ]);
+
+        Keterangan::create([
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat
+        ]);
+
         return redirect('/students')->with('status', 'Data mahasiswa berhasil ditambahkan');
     }
-
-    // public function insert(Request $request)
-    // {
-    //     $request->validate([
-    //         'jk' => 'required',
-    //         'alamat' => 'required'
-    //     ]);
-    // }
 
     /**
      * Display the specified resource.
@@ -119,9 +130,7 @@ class StudentsController extends Controller
             'nama' => 'required',
             'nim' => 'required|size:9',
             'email' => 'required',
-            'jurusan' => 'required',
-            'jk' => 'required',
-            'alamat' => 'required'
+            'jurusan' => 'required'
         ]);
 
         Student::where('id', $student->id)
@@ -130,9 +139,8 @@ class StudentsController extends Controller
                 'nim' => $request->nim,
                 'email' => $request->email,
                 'jurusan' => $request->jurusan,
-                'jk' => $request->jk,
-                'alamat' => $request->alamat
             ]);
+
         return redirect('/students')->with('status', 'Data mahasiswa berhasil diubah');
     }
 

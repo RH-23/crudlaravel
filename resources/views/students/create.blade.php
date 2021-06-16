@@ -39,27 +39,32 @@
                     </div>
                     <div class="mb-3">
                         <label for="jurusan">Jurusan</label>
-                        <input type="text" class="form-control @error('jurusan') is-invalid @enderror" id="jurusan" placeholder="Masukkan Jurusan" name="jurusan" value="{{ old('email') }}">
+                        <input type="text" class="form-control @error('jurusan') is-invalid @enderror" id="jurusan" placeholder="Masukkan Jurusan" name="jurusan" value="{{ old('jurusan') }}">
                         @error('jurusan')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
+
+
                     <div class="mb-3">
-                        <label for="jk">Jenis Kelamin</label>
-                        {{-- <input type="text" class="form-control @error('jk') is-invalid @enderror" id="jk" placeholder="Masukkan jk" name="jk" value="{{ old('jk') }}"> --}}
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio1">Laki-laki</label>
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="btnradio2">Perempuan</label>
-                          </div>
-                        @error('jk')
-                            <div class="invalid-feedback">
-                                {{ $message }}
+                        <div class="form-grup">
+                            <label for="jenis_kelamin">Jenis Kelamin</label>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="jenis_kelaminL" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : ''}}>
+                                <label for="jenis_kelaminL" class="form-check-label">Laki-laki</label>
                             </div>
-                        @enderror
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" id="jenis_kelaminF" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : ''}}>
+                                <label for="jenis_kelaminF" class="form-check-label">Perempuan</label>
+                                @error ('jenis_kelamin')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="alamat">Alamat</label>
@@ -70,6 +75,8 @@
                             </div>
                         @enderror
                     </div>
+
+
                    <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </form>
 
